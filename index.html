@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Калькулятор розмитнення авто</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="blue">
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+
+    <div class="transport-lane" aria-hidden="true">
+      <div class="flag-pin flag-left">🇺🇸</div>
+      <div class="flag-pin flag-right">🇺🇦</div>
+      <div class="transport-track">
+        <span class="transport-icon ship-icon">🚢</span>
+        <span class="transport-icon truck-icon">🚚</span>
+        <span class="transport-icon plane-icon">✈️</span>
+      </div>
+      <div class="waterline"></div>
+    </div>
+
+    <main class="layout">
+      <section class="card form-card">
+        <h1>Калькулятор розмитнення авто</h1>
+
+        <div class="grid">
+          <label>
+            <span>Вартість авто ($)</span>
+            <input id="carPrice" type="number" min="0" step="100" value="10000" />
+          </label>
+
+          <label>
+            <span>Вартість ремонту ($)</span>
+            <input id="repairCost" type="number" min="0" step="50" value="0" />
+          </label>
+
+          <label>
+            <span>Аукціон</span>
+            <select id="auctionType">
+              <option value="copart">Copart</option>
+              <option value="iaai">IAAI</option>
+              <option value="manheim">Manheim</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Назва майданчика</span>
+            <input
+              id="siteName"
+              type="text"
+              list="siteOptions"
+              placeholder="Почніть вводити назву"
+              value="LOS ANGELES"
+            />
+            <datalist id="siteOptions"></datalist>
+          </label>
+
+          <label>
+            <span>Тип двигуна</span>
+            <select id="engineType">
+              <option value="petrol">Бензин</option>
+              <option value="diesel">Дизель</option>
+              <option value="hybrid">Гібрид</option>
+              <option value="electric">Електро</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Рік випуску авто</span>
+            <select id="carAge"></select>
+          </label>
+
+          <label id="engineVolumeRow">
+            <span>Об'єм двигуна (см³)</span>
+            <input id="engineVolume" type="number" min="0" step="100" value="2000" />
+          </label>
+
+          <label id="batteryRow" class="hidden">
+            <span>Об'єм батареї (kWh)</span>
+            <input id="batteryKwh" type="number" min="0" step="1" value="60" />
+          </label>
+
+          <label>
+            <span>Доставка</span>
+            <select id="destinationCity">
+              <option value="lviv">Львів</option>
+              <option value="kyiv" selected>Київ</option>
+            </select>
+          </label>
+
+          <label class="toggle-row">
+            <span>Бус</span>
+            <span class="switch">
+              <input id="pickupBus" type="checkbox" />
+              <span class="slider"></span>
+            </span>
+          </label>
+
+          <label id="hazardousRow" class="hidden">
+            <span>Небезпечний вантаж ($)</span>
+            <input id="hazardousCargo" type="number" min="0" step="50" value="0" />
+          </label>
+        </div>
+
+        <div class="form-bottom-note">
+          <div class="form-bottom-note-title">Urban Auto</div>
+          <div>Import your dream car from USA 🇺🇸</div>
+          <div>Make Amerika Great Again</div>
+        </div>
+      </section>
+
+      <section class="card result-card">
+        <h2>Результати</h2>
+        <div class="rows" id="resultRows"></div>
+        <div class="customs-split">
+          <div class="customs-left">
+            <div class="row">
+              <span class="label">Мито</span>
+              <span class="value" id="dutyValue">0 USD</span>
+            </div>
+            <div class="row">
+              <span class="label">ПДВ</span>
+              <span class="value" id="vatValue">0 USD</span>
+            </div>
+            <div class="row">
+              <span class="label">Акциз</span>
+              <span class="value" id="exciseValue">0 USD</span>
+            </div>
+          </div>
+          <div class="customs-total">
+            <p>Митниця (усього)</p>
+            <strong id="customsTotalValue">0 USD</strong>
+          </div>
+        </div>
+
+        <div class="total-box">
+          <p>ЗАГАЛЬНА ЦІНА</p>
+          <strong id="totalPrice">$0</strong>
+        </div>
+      </section>
+    </main>
+
+    <script src="copart-data.js"></script>
+    <script src="iaai-data.js"></script>
+    <script src="manheim-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
